@@ -30,7 +30,9 @@ const VolumeControl = ({ volume, setVolume }: { volume: number, setVolume: (v: n
                         step="0.01"
                         value={volume}
                         onChange={(e) => setVolume(Number(e.target.value))}
-                        orient="vertical"
+                        {...{ orient: "vertical" } as any}
+                        className="h-full w-full accent-amber-500 cursor-pointer"
+                        style={{ WebkitAppearance: 'slider-vertical' }}
                     />
                 </div>
             )}
