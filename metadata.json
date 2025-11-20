@@ -1,0 +1,5 @@
+{
+  "description": "A music player with a native Android Material Design interface, an AI-powered music browser, and detailed song information from a generative model.",
+  "requestFramePermissions": [],
+  "name": "Music Player"
+}
