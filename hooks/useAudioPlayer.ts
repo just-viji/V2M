@@ -173,6 +173,38 @@ export const useAudioPlayer = (updateDuration?: (id: string, dur: number) => voi
     }
   }, [shuffle, playQueue, currentQueueIndex, currentSong, originalQueue]);
 
+  // Media Session API Integration
+  useEffect(() => {
+    if (!currentSong) return;
+
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: currentSong.title,
+        artist: currentSong.artist,
+        album: currentSong.album,
+        artwork: [
+          { src: currentSong.coverUrl, sizes: '96x96', type: 'image/png' },
+          { src: currentSong.coverUrl, sizes: '128x128', type: 'image/png' },
+          { src: currentSong.coverUrl, sizes: '192x192', type: 'image/png' },
+          { src: currentSong.coverUrl, sizes: '256x256', type: 'image/png' },
+          { src: currentSong.coverUrl, sizes: '384x384', type: 'image/png' },
+          { src: currentSong.coverUrl, sizes: '512x512', type: 'image/png' },
+        ]
+      });
+
+      navigator.mediaSession.setActionHandler('play', () => setIsPlaying(true));
+      navigator.mediaSession.setActionHandler('pause', () => setIsPlaying(false));
+      navigator.mediaSession.setActionHandler('previoustrack', playPrev);
+      navigator.mediaSession.setActionHandler('nexttrack', playNext);
+      navigator.mediaSession.setActionHandler('seekto', (details) => {
+          if (details.seekTime !== undefined && audioRef.current) {
+            audioRef.current.currentTime = details.seekTime;
+            setCurrentTime(details.seekTime);
+          }
+      });
+    }
+  }, [currentSong, playNext, playPrev]);
+
   useEffect(() => {
     const audio = audioRef.current;
     if(!audio) return;

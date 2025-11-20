@@ -1,6 +1,6 @@
 {
-  "name": "Music Player",
-  "short_name": "Music",
+  "name": "V2M Music Player",
+  "short_name": "V2M",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#121212",
@@ -8,12 +8,12 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/461/461238.png",
+      "src": "https://ui-avatars.com/api/?name=V2M&background=f59e0b&color=fff&size=192&length=3&font-size=0.33",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/461/461238.png",
+      "src": "https://ui-avatars.com/api/?name=V2M&background=f59e0b&color=fff&size=512&length=3&font-size=0.33",
       "sizes": "512x512",
       "type": "image/png"
     }
